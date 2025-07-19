@@ -1,0 +1,36 @@
+[project]
+name = "play-pydantic-ai"
+version = "0.1.0"
+description = "Experimenting with pydantic-ai"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+play-pydantic-ai = "play_pydantic_ai.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/play_pydantic_ai"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--strict-config",
+    "--cov=src/play_pydantic_ai",
+    "--cov-report=term-missing",
+]
